@@ -1,0 +1,75 @@
+@baseUrl = http://localhost:8080
+# Substitua pelos IDs retornados nos respectivos cadastros.
+@medicoId = 1
+@pacienteId = 1
+
+### Cadastrar médico
+POST {{baseUrl}}/medicos
+Content-Type: application/json
+
+{
+  "nome": "Ana Silva",
+  "email": "ana@example.com",
+  "crm": "123456",
+  "telefone": "16999999999",
+  "especialidade": "ORTOPEDIA",
+  "endereco": {
+    "logradouro": "Rua Exemplo",
+    "bairro": "Centro",
+    "cep": "13574000",
+    "cidade": "São Carlos",
+    "uf": "SP",
+    "numero": "10"
+  }
+}
+
+### Listar médicos ativos
+GET {{baseUrl}}/medicos?size=10&page=0&sort=nome,asc
+
+### Atualizar médico
+PUT {{baseUrl}}/medicos
+Content-Type: application/json
+
+{
+  "id": {{medicoId}},
+  "nome": "Ana Atualizada",
+  "endereco": { "numero": "42" }
+}
+
+### Inativar médico
+DELETE {{baseUrl}}/medicos/{{medicoId}}
+
+### Cadastrar paciente
+POST {{baseUrl}}/pacientes
+Content-Type: application/json
+
+{
+  "nome": "João Silva",
+  "email": "joao@example.com",
+  "cpf": "12345678901",
+  "telefone": "16988888888",
+  "endereco": {
+    "logradouro": "Rua Exemplo",
+    "bairro": "Centro",
+    "cep": "13574000",
+    "cidade": "São Carlos",
+    "uf": "SP",
+    "numero": "20"
+  }
+}
+
+### Listar pacientes ativos
+GET {{baseUrl}}/pacientes?size=10&page=0&sort=nome,asc
+
+### Atualizar paciente
+PUT {{baseUrl}}/pacientes
+Content-Type: application/json
+
+{
+  "id": {{pacienteId}},
+  "telefone": "16977777777",
+  "endereco": { "complemento": "Casa" }
+}
+
+### Inativar paciente
+DELETE {{baseUrl}}/pacientes/{{pacienteId}}
